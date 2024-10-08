@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let post of blogPosts">
+      <div class="card mb-4" *ngIf="post.isVisible">
+        <!-- Conditionally display the image if `featuredImageURL` is not null or undefined -->
+        <img [src]="post.featuredImageURL || 'https://www.ucf.edu/wp-content/blogs.dir/20/files/2023/07/Tech-Hub.jpg'" class="card-img-top" alt="Blog Image">
+        
+        <div class="card-body">
+          <!-- Conditionally display the title if `post.title` is not null or undefined -->
+          <h5 class="card-title" *ngIf="post.title?.trim()">{{ post.title }}</h5>
+          
+          <!-- Conditionally display the short description if `post.shortDescription` is not null or undefined -->
+          <p class="card-text" *ngIf="post.shortDescription?.trim()">{{ post.shortDescription }}</p>
+          
+          <a [routerLink]="['/blog', post.urlHandle]" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

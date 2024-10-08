@@ -1,0 +1,17 @@
+<div *ngIf="blogPost" class="container narrow-container">
+  <!-- Render the image only if the image URL has been validated -->
+  <img *ngIf="featuredImageSrc" [src]="featuredImageSrc" class="img-fluid" alt="Blog Image" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  
+  <h1 class="mt-4">{{ blogPost.title }}</h1>
+
+  <div class="row mt-3 mb-4">
+    <div class="col text-muted">
+      {{ blogPost.author }} 
+    </div>
+    <div class="col text-end text-muted">
+      {{ blogPost.publishedDate | date: 'dd-MM-yyyy' }}
+    </div>
+  </div>
+
+  <markdown [data]="blogPost.content"></markdown>
+</div>

@@ -1,0 +1,40 @@
+<div class="container my-3">
+  <h2>Blog Posts</h2>
+  <div class="d-flex justify-content-end mb-2">
+    <button class="btn btn-primary" routerLink="/admin/blogposts/add">Add BlogPost</button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Short Description</th>
+        <th>Is Visible?</th>
+        <th>Categories</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of blogPosts$ | async">
+        <td>{{ post.title }}</td>
+        <td>{{ post.shortDescription }}</td>
+        <td>{{ post.isVisible ? 'Yes' : 'No' }}</td>
+        <td>
+          <ng-container *ngIf="post.categories && post.categories.length > 0">
+            <span 
+              class="badge rounded-pill bg-light text-dark mx-1"
+              *ngFor="let category of post.categories"
+            >
+              {{ category.name }}
+            </span>
+          </ng-container>
+        </td>
+        
+        <td>
+          <a class="btn btn-light" [routerLink]="['/admin/blogposts/edit', post.id]">Edit</a>
+        </td>
+        <td><button class="btn btn-secondary" (click)="deletePost(post.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
